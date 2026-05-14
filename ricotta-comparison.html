@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ricotta Brand Comparison | Nutrition Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #d0021b;
+    --red-dark: #a80016;
+    --red-light: #fff0f0;
+    --black: #1a1a1a;
+    --dark-grey: #333;
+    --mid-grey: #666;
+    --light-grey: #f2f2f2;
+    --border: #e0e0e0;
+    --white: #fff;
+    --green: #2e7d32;
+    --amber: #e65100;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--red);
+    height: 4px;
+    width: 100%;
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navbar-logo {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--red);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .navbar-logo span { color: var(--black); }
+
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    gap: 0;
+  }
+  .navbar-links a {
+    display: block;
+    padding: 0 16px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark-grey);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .navbar-links a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  .burger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+  }
+  .burger-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.2s;
+  }
+  .burger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger-btn.open span:nth-child(2) { opacity: 0; }
+  .burger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .nav-drawer {
+    display: none;
+    position: fixed;
+    top: 65px;
+    left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 3px solid var(--red);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    z-index: 999;
+    padding: 8px 0 16px;
+  }
+  .nav-drawer.open { display: block; }
+  .nav-drawer a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark-grey);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-left: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .nav-drawer a:hover { color: var(--red); border-left-color: var(--red); background: var(--light-grey); }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb-bar {
+    background: var(--light-grey);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: var(--mid-grey);
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--mid-grey); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--red); text-decoration: underline; }
+  .breadcrumb .sep { color: #bbb; }
+  .breadcrumb .current { color: var(--black); font-weight: 700; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--light-grey);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 20px 36px;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--black);
+    max-width: 680px;
+    margin-bottom: 14px;
+  }
+  .hero-desc {
+    font-size: 16px;
+    color: var(--mid-grey);
+    max-width: 620px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark-grey);
+  }
+  .hero-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .page-body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--black);
+  }
+  .section-head h2 {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-head .count {
+    font-size: 13px;
+    color: var(--mid-grey);
+    font-weight: 400;
+  }
+
+  /* ── RECIPE CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .recipe-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .recipe-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+  }
+
+  .card-img-wrap {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-img-wrap .emoji { font-size: 52px; }
+  .card-img-wrap .card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--red);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .card-body { padding: 14px 16px 16px; }
+  .card-brand {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .card-type-tag {
+    font-size: 12px;
+    color: var(--mid-grey);
+    margin-bottom: 12px;
+  }
+
+  .card-nutrition {
+    display: flex;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+  .nutr-item {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    padding: 0 6px;
+  }
+  .nutr-item:last-child { border-right: none; }
+  .nutr-val {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1;
+  }
+  .nutr-val.calories { color: var(--red); }
+  .nutr-label {
+    font-size: 10px;
+    color: var(--mid-grey);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+  }
+
+  /* ── CALORIE CHART ── */
+  .chart-section { margin-bottom: 40px; }
+
+  .chart-row {
+    display: grid;
+    grid-template-columns: 170px 1fr 52px;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--light-grey);
+  }
+  .chart-row:last-child { border-bottom: none; }
+
+  .chart-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--black);
+    text-align: right;
+    line-height: 1.2;
+  }
+  .chart-label small {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--mid-grey);
+  }
+  .chart-track {
+    background: var(--light-grey);
+    border-radius: 2px;
+    height: 22px;
+    overflow: hidden;
+  }
+  .chart-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s cubic-bezier(0.16,1,0.3,1);
+  }
+  .chart-fill.high { background: var(--red); }
+  .chart-fill.mid  { background: var(--amber); }
+  .chart-fill.low  { background: var(--green); }
+  .chart-val {
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--black);
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--mid-grey);
+  }
+  .legend-swatch {
+    width: 12px; height: 12px;
+    border-radius: 2px;
+  }
+  .legend-swatch.high { background: var(--red); }
+  .legend-swatch.mid  { background: var(--amber); }
+  .legend-swatch.low  { background: var(--green); }
+
+  /* ── TABLE ── */
+  .table-section { margin-bottom: 40px; }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .data-table thead {
+    background: var(--black);
+    color: var(--white);
+  }
+  .data-table th {
+    padding: 11px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .data-table tr:hover td { background: var(--light-grey); }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 900;
+  }
+  .rank-badge.low-cal { background: var(--green); }
+
+  .cal-num { font-weight: 900; font-size: 16px; color: var(--red); }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag.whole  { background: #fde8e8; color: var(--red); }
+  .tag.skim   { background: #fff3e0; color: var(--amber); }
+  .tag.light  { background: #e8f5e9; color: var(--green); }
+
+  /* ── SIDEBAR ── */
+  .sidebar { display: flex; flex-direction: column; gap: 24px; }
+
+  .sidebar-widget {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .widget-head {
+    background: var(--black);
+    color: var(--white);
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .widget-body { padding: 16px; }
+
+  .quick-fact {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .quick-fact:last-child { border-bottom: none; padding-bottom: 0; }
+  .fact-icon { font-size: 20px; flex-shrink: 0; line-height: 1.4; }
+  .fact-text { font-size: 13px; color: var(--dark-grey); line-height: 1.5; }
+  .fact-text strong { display: block; font-weight: 700; color: var(--black); font-size: 14px; }
+
+  .top-pick {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .top-pick:last-child { border-bottom: none; padding-bottom: 0; }
+  .pick-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mid-grey);
+    margin-bottom: 2px;
+  }
+  .pick-brand {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--black);
+    margin-bottom: 2px;
+  }
+  .pick-desc { font-size: 12px; color: var(--mid-grey); line-height: 1.4; }
+
+  .cta-widget {
+    background: var(--red);
+    color: var(--white);
+    padding: 20px 16px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .cta-widget h3 {
+    font-size: 17px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .cta-widget p { font-size: 13px; opacity: 0.85; margin-bottom: 14px; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--white);
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 10px 20px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .cta-btn:hover { background: var(--light-grey); }
+
+  /* ── INTRO BLOCK ── */
+  .intro-block {
+    background: var(--light-grey);
+    border-left: 4px solid var(--red);
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    border-radius: 0 4px 4px 0;
+  }
+  .intro-block p { font-size: 15px; color: var(--dark-grey); line-height: 1.7; }
+
+  /* ── CONTACT FORM ── */
+  .contact-input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    transition: border-color 0.15s;
+  }
+  .contact-input:focus { outline: none; border-color: var(--red); }
+  .contact-textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 13px;
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 10px;
+    transition: border-color 0.15s;
+  }
+  .contact-textarea:focus { outline: none; border-color: var(--red); }
+  .contact-btn {
+    width: 100%;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 11px;
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+  .contact-btn:hover { background: var(--red-dark); }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .page-body { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .burger-btn { display: flex; }
+    .navbar-links { display: none; }
+  }
+  @media (max-width: 560px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .chart-row { grid-template-columns: 120px 1fr 44px; }
+    .chart-label { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="navbar-logo">Ricotta<span>Guide</span></a>
+    <ul class="navbar-links">
+      <li><a href="https://www.bbcgoodfood.com/recipes/collection/ricotta-recipes" target="_blank" rel="noopener noreferrer">Recipes</a></li>
+      <li><a href="#nutrition">Nutritional Info</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+    <button class="burger-btn" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="https://www.bbcgoodfood.com/recipes/collection/ricotta-recipes" target="_blank" rel="noopener noreferrer">Recipes</a>
+  <a href="#nutrition">Nutritional Information</a>
+  <a href="#contact">Contact Us</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb">
+    <a href="#">Home</a>
+    <span class="sep">›</span>
+    <a href="#">Nutrition</a>
+    <span class="sep">›</span>
+    <span class="current">Ricotta Brand Comparison</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Nutrition Guide</div>
+    <h1>Ricotta Brand Comparison: 8 Brands Ranked by Calories</h1>
+    <p class="hero-desc">From indulgent double cream to fat-free, we break down the calories, fat, and sugar in the most popular ricotta brands — so you can pick the right one for your recipe.</p>
+    <div class="hero-meta">
+      <div class="hero-pill"><span class="dot"></span> 8 brands tested</div>
+      <div class="hero-pill"><span class="dot"></span> Per ¼ cup serving</div>
+      <div class="hero-pill"><span class="dot"></span> 3 key metrics</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BODY -->
+<div class="page-body">
+
+  <!-- MAIN COLUMN -->
+  <main>
+
+    <div class="intro-block">
+      <p>Not all ricottas are created equal. The caloric spread across brands is nearly <strong>3× between the highest and lowest</strong>. Sugar stays fairly consistent (naturally-occurring lactose, not added sugar), while fat is the biggest variable — the key factor to watch depending on your dietary goals.</p>
+    </div>
+
+    <!-- BRAND CARDS -->
+    <div class="section-head">
+      <h2>Brand Profiles</h2>
+      <span class="count">8 brands</span>
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="recipe-card">
+        <div class="card-img-wrap">
+          <span class="emoji">🧀</span>
+          <div class="card-badge">#1 · Most Indulgent</div>
+        </div>
+        <div class="card-body">
+          <div class="card-brand">Galbani</div>
+          <div class="card-title">Double Cream Whole Milk Ricotta</div>
+          <div class="card-type-tag">Whole milk · Richest option</div>
+          <div class="card-nutrition">
+            <div class="nutr-item"><div class="nutr-val calories">130</div><div class="nutr-label">Calories</div></div>
+            <div class="nutr-item"><div class="nutr-val">11g</div><div class="nutr-label">Fat</div></div>
+            <div class="nutr-item"><div class="nutr-val">1g</div><div class="nutr-label">Sugar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="card-img-wrap">
+          <span class="emoji">🧀</span>
+          <div class="card-badge">#2 · Premium Quality</div>
+        </div>
+        <div class="card-body">
+          <div class="card-brand">Calabro</div>
+          <div class="card-title">Whole Milk Ricotta</div>
+          <div class="card-type-tag">Whole milk · Artisan</div>
+          <div class="card-nutrition">
+            <div class="nutr-item"><div class="nutr-val calories">116</div><div class="nutr-label">Calories</div></div>
+            <div class="nutr-item"><div class="nutr-val">8g</div><div class="nutr-label">Fat</div></div>
+            <div class="nutr-item"><div class="nutr-val">2g</div><div class="nutr-label">Sugar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="card-img-wrap">
+          <span class="emoji">🧀</span>
+          <div class="card-badge">#3 · Classic Italian</div>
+        </div>
+        <div class="card-body">
+          <div class="card-brand">Polly-O</div>
+          <div class="card-title">Whole Milk Ricotta</div>
+          <div class="card-type-tag">Whole milk · Widely available</div>
+          <div class="card-nutrition">
+            <div class="nutr-item"><div class="nutr-val calories">110</div><div class="nutr-label">Calories</div></div>
+            <div class="nutr-item"><div class="nutr-val">8g</div><div class="nutr-label">Fat</div></div>
+            <div class="nutr-item"><div class="nutr-val">2g</div><div class="nutr-label">Sugar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="card-img-wrap">
+          <span class="emoji">🧀</span>
+          <div class="card-badge">#4 · Award-Winning</div>
+        </div>
+        <div class="card-body">
+          <div class="card-brand">BelGioioso</div>
+          <div class="card-title">Ricotta con Latte Whole Milk</div>
+          <div class="card-type-tag">Whole milk · Great value</div>
+          <div class="card-nutrition">
+            <div class="nutr-item"><div class="nutr-val calories">90</div><div class="nutr-label">Calories</div></div>
+            <div class="nutr-item"><div class="nutr-val">7g</div><div class="nutr-label">Fat</div></div>
+            <div class="nutr-item"><div class="nutr-val">2g</div><div class="nutr-label">Sugar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="card-img-wrap">
+          <span class="emoji">🧀</span>
+          <div class="card-badge">#4 · Good Balance</div>
+        </div>
+        <div class="card-body">
+          <div class="card-brand">Polly-O</div>
+          <div class="card-title">Part Skim Ricotta</div>
+          <div class="card-type-tag">Part skim · Lighter option</div>
+          <div class="card-nutrition">
+            <div class="nutr-item"><div class="nutr-val calories">90</div><div class="nutr-label">Calories</div></div>
+            <div class="nutr-item"><div class="nutr-val">6g</div><div class="nutr-label">Fat</div></div>
+            <div class="nutr-item"><div class="nutr-val">2g</div><div class="nutr-label">Sugar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="card-img-wrap">
+          <span class="emoji">🧀</span>
+          <div class="card-badge">#6 · Leanest WM</div>
+        </div>
+        <div class="card-body">
+          <div class="card-brand">Sargento</div>
+          <div class="card-title">Whole Milk Ricotta</div>
+          <div class="card-type-tag">Whole milk · Leanest in category</div>
+          <div class="card-nutrition">
+            <div class="nutr-item"><div class="nutr-val calories">80</div><div class="nutr-label">Calories</div></div>
+            <div class="nutr-item"><div class="nutr-val">5g</div><div class="nutr-label">Fat</div></div>
+            <div class="nutr-item"><div class="nutr-val">5g</div><div class="nutr-label">Sugar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="card-img-wrap">
+          <span class="emoji">🧀</span>
+          <div class="card-badge">#7 · Best Low Fat</div>
+        </div>
+        <div class="card-body">
+          <div class="card-brand">Galbani</div>
+          <div class="card-title">Low Fat Ricotta</div>
+          <div class="card-type-tag">Low fat · 78% less fat vs whole milk</div>
+          <div class="card-nutrition">
+            <div class="nutr-item"><div class="nutr-val calories">60</div><div class="nutr-label">Calories</div></div>
+            <div class="nutr-item"><div class="nutr-val">1.5g</div><div class="nutr-label">Fat</div></div>
+            <div class="nutr-item"><div class="nutr-val">2g</div><div class="nutr-label">Sugar</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="card-img-wrap" style="background:#e8f5e9;">
+          <span class="emoji">🧀</span>
+          <div class="card-badge" style="background:var(--green);">#8 · Lowest Calorie</div>
+        </div>
+        <div class="card-body">
+          <div class="card-brand" style="color:var(--green);">Sargento</div>
+          <div class="card-title">Fat Free Ricotta</div>
+          <div class="card-type-tag">Fat free · Best for calorie counting</div>
+          <div class="card-nutrition">
+            <div class="nutr-item"><div class="nutr-val" style="color:var(--green);">45</div><div class="nutr-label">Calories</div></div>
+            <div class="nutr-item"><div class="nutr-val">0g</div><div class="nutr-label">Fat</div></div>
+            <div class="nutr-item"><div class="nutr-val">3g</div><div class="nutr-label">Sugar</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CALORIE CHART -->
+    <div class="chart-section" id="nutrition">
+      <div class="section-head">
+        <h2>Calories Ranked</h2>
+        <span class="count">per ¼ cup</span>
+      </div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-swatch high"></div> Whole milk / Double cream</div>
+        <div class="legend-item"><div class="legend-swatch mid"></div> Part skim</div>
+        <div class="legend-item"><div class="legend-swatch low"></div> Low fat / Fat free</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">Galbani <small>Double Cream WM</small></div>
+        <div class="chart-track"><div class="chart-fill high" style="width:100%"></div></div>
+        <div class="chart-val">130</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">Calabro <small>Whole Milk</small></div>
+        <div class="chart-track"><div class="chart-fill high" style="width:89%"></div></div>
+        <div class="chart-val">116</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">Polly-O <small>Whole Milk</small></div>
+        <div class="chart-track"><div class="chart-fill high" style="width:85%"></div></div>
+        <div class="chart-val">110</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">BelGioioso <small>Ricotta con Latte WM</small></div>
+        <div class="chart-track"><div class="chart-fill high" style="width:69%"></div></div>
+        <div class="chart-val">90</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">Polly-O <small>Part Skim</small></div>
+        <div class="chart-track"><div class="chart-fill mid" style="width:69%"></div></div>
+        <div class="chart-val">90</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">Sargento <small>Whole Milk</small></div>
+        <div class="chart-track"><div class="chart-fill high" style="width:62%"></div></div>
+        <div class="chart-val">80</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">Galbani <small>Low Fat</small></div>
+        <div class="chart-track"><div class="chart-fill low" style="width:46%"></div></div>
+        <div class="chart-val">60</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">Sargento <small>Fat Free</small></div>
+        <div class="chart-track"><div class="chart-fill low" style="width:35%"></div></div>
+        <div class="chart-val">45</div>
+      </div>
+    </div>
+
+    <!-- FULL TABLE -->
+    <div class="table-section">
+      <div class="section-head">
+        <h2>Full Comparison Table</h2>
+      </div>
+      <div style="overflow-x:auto; border:1px solid var(--border); border-radius:4px;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Rank</th><th>Brand</th><th>Type</th>
+              <th>Calories</th><th>Total Fat</th><th>Sugar</th><th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rank-badge">1</span></td>
+              <td><strong>Galbani</strong></td><td>Double Cream WM</td>
+              <td class="cal-num">130</td><td>11g</td><td>1g</td>
+              <td><span class="tag whole">Whole Milk</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge">2</span></td>
+              <td><strong>Calabro</strong></td><td>Whole Milk</td>
+              <td class="cal-num">116</td><td>8g</td><td>2g</td>
+              <td><span class="tag whole">Whole Milk</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge">3</span></td>
+              <td><strong>Polly-O</strong></td><td>Whole Milk</td>
+              <td class="cal-num">110</td><td>8g</td><td>2g</td>
+              <td><span class="tag whole">Whole Milk</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge">4</span></td>
+              <td><strong>BelGioioso</strong></td><td>Ricotta con Latte WM</td>
+              <td class="cal-num">90</td><td>7g</td><td>2g</td>
+              <td><span class="tag whole">Whole Milk</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge">4</span></td>
+              <td><strong>Polly-O</strong></td><td>Part Skim</td>
+              <td class="cal-num">90</td><td>6g</td><td>2g</td>
+              <td><span class="tag skim">Part Skim</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge">6</span></td>
+              <td><strong>Sargento</strong></td><td>Whole Milk</td>
+              <td class="cal-num">80</td><td>5g</td><td>5g</td>
+              <td><span class="tag whole">Whole Milk</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge">7</span></td>
+              <td><strong>Galbani</strong></td><td>Low Fat</td>
+              <td class="cal-num" style="color:var(--green);">60</td><td>1.5g</td><td>2g</td>
+              <td><span class="tag light">Low Fat</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-badge low-cal">8</span></td>
+              <td><strong>Sargento</strong></td><td>Fat Free</td>
+              <td class="cal-num" style="color:var(--green);">45</td><td>0g</td><td>3g</td>
+              <td><span class="tag light">Fat Free</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px;color:var(--mid-grey);margin-top:10px;">* All values per ¼ cup (approx. 55–62g). Sources: brand nutrition labels and USDA data.</p>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="cta-widget">
+      <h3>Looking for ricotta recipes?</h3>
+      <p>Browse hundreds of ideas from lasagne to cannoli.</p>
+      <a href="https://www.bbcgoodfood.com/recipes/collection/ricotta-recipes" target="_blank" rel="noopener noreferrer" class="cta-btn">View Recipes →</a>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-head">Editor's Top Picks</div>
+      <div class="widget-body">
+        <div class="top-pick">
+          <div class="pick-label">Best Overall</div>
+          <div class="pick-brand">BelGioioso</div>
+          <div class="pick-desc">90 cal, whole milk, award-winning flavour at a sensible calorie count</div>
+        </div>
+        <div class="top-pick">
+          <div class="pick-label">Best Low Fat</div>
+          <div class="pick-brand">Galbani Low Fat</div>
+          <div class="pick-desc">Just 60 cal with only 1.5g fat — great for everyday cooking</div>
+        </div>
+        <div class="top-pick">
+          <div class="pick-label">Most Indulgent</div>
+          <div class="pick-brand">Galbani Double Cream</div>
+          <div class="pick-desc">130 cal of pure, creamy richness — ideal for desserts</div>
+        </div>
+        <div class="top-pick">
+          <div class="pick-label">Lowest Calorie</div>
+          <div class="pick-brand">Sargento Fat Free</div>
+          <div class="pick-desc">Just 45 cal and zero fat — perfect for calorie counters</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-head">Quick Facts</div>
+      <div class="widget-body">
+        <div class="quick-fact">
+          <div class="fact-icon">📊</div>
+          <div class="fact-text"><strong>Nearly 3× calorie difference</strong> between the highest (130) and lowest (45) brands</div>
+        </div>
+        <div class="quick-fact">
+          <div class="fact-icon">🥛</div>
+          <div class="fact-text"><strong>Sugar is consistent</strong> — it's natural lactose, not added sugar</div>
+        </div>
+        <div class="quick-fact">
+          <div class="fact-icon">⚖️</div>
+          <div class="fact-text"><strong>Fat is the main variable</strong> — ranges from 0g to 11g per serving</div>
+        </div>
+        <div class="quick-fact">
+          <div class="fact-icon">🍽️</div>
+          <div class="fact-text"><strong>All values per ¼ cup</strong> (approx. 55–62g) serving size</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="sidebar-widget">
+      <div class="widget-head">Contact Us</div>
+      <div class="widget-body">
+        <p style="font-size:13px;color:var(--mid-grey);margin-bottom:14px;">Have a question about our nutrition data or want to suggest a brand?</p>
+        <input type="email" placeholder="Your email address" class="contact-input">
+        <textarea placeholder="Your message" rows="3" class="contact-textarea"></textarea>
+        <button class="contact-btn">Send Message</button>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>Nutrition values are per ¼ cup serving and sourced from brand labels and USDA data.<br>
+  Always check current product packaging, as formulations may change.</p>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navDrawer = document.getElementById('navDrawer');
+
+  burgerBtn.addEventListener('click', () => {
+    const isOpen = navDrawer.classList.toggle('open');
+    burgerBtn.classList.toggle('open', isOpen);
+    burgerBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  navDrawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navDrawer.classList.remove('open');
+      burgerBtn.classList.remove('open');
+      burgerBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      navDrawer.classList.remove('open');
+      burgerBtn.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>
